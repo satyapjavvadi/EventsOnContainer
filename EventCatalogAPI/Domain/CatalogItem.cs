@@ -17,7 +17,7 @@ namespace EventCatalogAPI.Domain
         public string State { get; set; }
         public string Country { get; set; }
         public int Zipcode { get; set; }
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         public string PictureURL { get; set; }
 
         //Optional Event Information
