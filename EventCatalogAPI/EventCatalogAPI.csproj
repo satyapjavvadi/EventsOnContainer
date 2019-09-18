@@ -6,9 +6,39 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\" />
-    <Folder Include="Data\" />
+    <Compile Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.RazorAssemblyInfo.cs" />
+    <Compile Include="obj\Release\netcoreapp2.1\EventCatalogAPI.AssemblyInfo.cs" />
+    <Compile Include="obj\Release\netcoreapp2.1\EventCatalogAPI.RazorAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\EventCatalogAPI.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.assets.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.dll" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.pdb" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.RazorAssemblyInfo.cache" />
+    <None Include="obj\Debug\netcoreapp2.1\EventCatalogAPI.RazorTargetAssemblyInfo.cache" />
+    <None Include="obj\EventCatalogAPI.csproj.nuget.cache" />
+    <None Include="obj\EventCatalogAPI.csproj.nuget.g.props" />
+    <None Include="obj\EventCatalogAPI.csproj.nuget.g.targets" />
+    <None Include="obj\Release\netcoreapp2.1\EventCatalogAPI.AssemblyInfoInputs.cache" />
+    <None Include="obj\Release\netcoreapp2.1\EventCatalogAPI.assets.cache" />
+    <None Include="obj\Release\netcoreapp2.1\EventCatalogAPI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Release\netcoreapp2.1\EventCatalogAPI.csprojAssemblyReference.cache" />
+    <None Include="obj\Release\netcoreapp2.1\EventCatalogAPI.RazorAssemblyInfo.cache" />
   </ItemGroup>
 
   <ItemGroup>
