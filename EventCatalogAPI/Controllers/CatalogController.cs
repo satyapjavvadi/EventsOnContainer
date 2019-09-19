@@ -40,5 +40,42 @@ namespace EventCatalogAPI.Controllers
             return items;
 
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> CatalogTypes()
+        {
+            var items = await _context.CatalogTypes.ToListAsync();
+            return Ok(items);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> CatalogCategories()
+        {
+            var items = await _context.CatalogCategories.ToListAsync();
+            return Ok(items);
+        }
+
+        [HttpGet]
+        [Route("[action]/type/{catalogTypeId}/category/{catalogCategoryId}")]
+        public async Task<IActionResult> Items(int? catalogTypeId, int? catalogCategoryId, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
+        {
+            var root = (IQueryable<CatalogItem>)_context.CatalogItems;
+            if (catalogTypeId.HasValue)
+            {
+                root = root.Where(c => c.CatalogTypeID == catalogTypeId);
+            }
+            if (catalogCategoryId.HasValue)
+            {
+                root = root.Where(c => c.CatalogCategoryID == catalogCategoryId);
+            }
+
+            var itemsCount = await root.LongCountAsync();
+            var items = await root.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            items = ChangePictureURL(items);
+            return Ok(items);
+
+        }
     }
 }
