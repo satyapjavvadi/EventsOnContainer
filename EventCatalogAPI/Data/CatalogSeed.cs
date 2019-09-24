@@ -53,12 +53,12 @@ namespace EventCatalogAPI.Data
         {
             return new List<CatalogItem>()
             {
-                new CatalogItem() {CatalogTypeID=1, CatalogCategoryID=1,
+                new CatalogItem() {CatalogTypeID=1, CatalogCategoryID=1, 
                     Information = "Come join us at the gym for a free trial boxing class",
                     Name = "Boxing Class",
                     AddressLineOne = "100 Main Street", City= "Seattle", State = "WA", Country = "USA", Zipcode=98001,
                     Time="10/18/2019 4:00 P.M. - 5:00 P.M.", PictureURL = "http://externalcatalogbaseurltobereplaced/api/pic/1"},
-                new CatalogItem() {CatalogTypeID=2, CatalogCategoryID=1,
+                new CatalogItem() {CatalogTypeID=2, CatalogCategoryID=1, 
                     Information = "Remember that famous soccer player? She will be here! Come get autographs",
                     Name = "Famous Soccer Player At Mall",
                     AddressLineOne = "200", City= "Bellevue", State = "WA", Country = "USA", Zipcode =98002,
