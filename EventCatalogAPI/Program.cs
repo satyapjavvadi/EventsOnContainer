@@ -14,8 +14,8 @@ namespace EventCatalogAPI
             using(var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<CatalogContext>();
-                CatalogSeed.Seed(context);
+                var context = services.GetRequiredService<EventCatalogContext>();
+                EventCatalogSeed.Seed(context);
             }   
             host.Run();
         }

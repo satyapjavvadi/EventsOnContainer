@@ -15,9 +15,9 @@ namespace EventCatalogAPI.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
-        private readonly CatalogContext _context;
+        private readonly EventCatalogContext _context;
         private readonly IConfiguration _config;
-        public CatalogController(CatalogContext context, IConfiguration config)
+        public CatalogController(EventCatalogContext context, IConfiguration config)
         {
             _context = context;
             _config = config;
@@ -27,14 +27,14 @@ namespace EventCatalogAPI.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Items([FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
         {
-            var itemsCount = await _context.CatalogItems.LongCountAsync();
-            var items = await _context.CatalogItems.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
-            items = ChangePictureURL(items);
+            var itemsCount = await _context.EventItems.LongCountAsync();
+            var items = await _context.EventItems.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            items = changePictureURL(items);
             return Ok(items);
 
         }
 
-        private List<CatalogItem> ChangePictureURL(List<CatalogItem> items)
+        private List<EventItem> changePictureURL(List<EventItem> items)
         {
             items.ForEach(c => c.PictureURL = c.PictureURL.Replace("http://externalcatalogbaseurltobereplaced", _config["ExternalCatalogBaseURL"]));
             return items;
@@ -43,37 +43,51 @@ namespace EventCatalogAPI.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> CatalogTypes()
+        public async Task<IActionResult> EventTypes()
         {
-            var items = await _context.CatalogTypes.ToListAsync();
+            var items = await _context.EventTypes.ToListAsync();
             return Ok(items);
         }
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> CatalogCategories()
+        public async Task<IActionResult> EventLocations()
         {
-            var items = await _context.CatalogCategories.ToListAsync();
+            {
+                var items = await _context.CatalogCategories.ToListAsync(); var items = await _context.EventLocations.ToListAsync();
+                return Ok(items); return Ok(items);
+            }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> EventCategories()
+        {
+            var items = await _context.EventCategories.ToListAsync();
             return Ok(items);
         }
 
         [HttpGet]
-        [Route("[action]/type/{catalogTypeId}/category/{catalogCategoryId}")]
-        public async Task<IActionResult> Items(int? catalogTypeId, int? catalogCategoryId, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
+        [Route("[action]/type/{eventTypeId}/category/{eventCategoryId}/location/{eventLocationid}")]
+        public async Task<IActionResult> Items(int? eventTypeId, int? eventCategoryId, int? eventLocationId, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 6)
         {
-            var root = (IQueryable<CatalogItem>)_context.CatalogItems;
-            if (catalogTypeId.HasValue)
+            var root = (IQueryable<EventItem>)_context.EventItems;
+            if (eventTypeId.HasValue)
             {
-                root = root.Where(c => c.CatalogTypeID == catalogTypeId);
+                root = root.Where(c => c.EventTypeId == eventTypeId);
             }
-            if (catalogCategoryId.HasValue)
+            if (eventCategoryId.HasValue)
             {
-                root = root.Where(c => c.CatalogCategoryID == catalogCategoryId);
+                root = root.Where(c => c.EventCategoryId == eventCategoryId);
+            }
+            if (eventLocationId.HasValue)
+            {
+                root = root.Where (c => c.EventLocationId == eventLocationId)
             }
 
             var itemsCount = await root.LongCountAsync();
-            var items = await root.OrderBy(c => c.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
-            items = ChangePictureURL(items);
+            var items = await root.OrderBy(c => c.EventName).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            items = changePictureURL(items);
             return Ok(items);
 
         }

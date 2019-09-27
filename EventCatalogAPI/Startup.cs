@@ -21,7 +21,7 @@ namespace EventCatalogAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<CatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
             services.AddSwaggerGen(options =>
             {
                 options.DescribeAllEnumsAsStrings();
