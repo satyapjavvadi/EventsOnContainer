@@ -52,11 +52,19 @@ namespace EventCatalogAPI.Controllers
             {
                 root = root.Where(c => c.EventCategoryId == eventCategoryId);
             }
+<<<<<<< Updated upstream
             if (eventTypeId.HasValue && eventCategoryId != 0)
             {
                 root = root.Where(c => c.EventTypeId == eventTypeId);
             }
             if (eventLocationId.HasValue && eventCategoryId != 0)
+=======
+            if (eventTypeId.HasValue && eventTypeId != 0)
+            {
+                root = root.Where(c => c.EventTypeId == eventTypeId);
+            }
+            if (eventLocationId.HasValue && eventLocationId != 0)
+>>>>>>> Stashed changes
             {
                 root = root.Where(c => c.EventLocationId == eventLocationId);
             }
