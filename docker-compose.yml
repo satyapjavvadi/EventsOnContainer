@@ -45,7 +45,7 @@ services:
     environment:
       CatalogUrl: http://catalog
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.22:6170
+      IdentityUrl: http://192.168.3.104:6170
       CallBackUrl: http://localhost:5207
       CartUrl: http://cart
       OrderUrl: http://order
