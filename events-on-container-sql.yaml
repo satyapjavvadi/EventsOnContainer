@@ -1,13 +1,13 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: EventDb
+  name: catalogdb
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: EventDb
+        app: catalogdb
     spec:
       containers:
       - name: catalogdb
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: EventDb
+  name: catalogdb
 spec:
   ports:
   - port: 1433
   selector:
-    app: EventDb
+    app: catalogdb
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: catalogapi
-        image: eventsacr.azurecr.io/catalogapi:v1
+        image: eventsacr.azurecr.io/events/catalogapi:v1
         ports: 
         - containerPort: 80
         resources:
